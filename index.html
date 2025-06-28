@@ -473,7 +473,80 @@
             font-size: 1.3rem;
         }
 
+        /* Order Summary */
+        .order-summary {
+            background: rgba(249, 247, 244, 0.9);
+            border: 2px solid #ff6b35;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
 
+        .order-summary.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .order-summary h3 {
+            color: #8B4513;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #ff6b35;
+            border-top: 2px solid #ff6b35;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        .order-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .order-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+        }
+
+        .add-more-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .add-more-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
 
         /* FAQ Section */
         .faq {
@@ -631,7 +704,7 @@
 
         .contact-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -884,17 +957,6 @@
             transform: translateY(-1px);
         }
 
-        .cart-total {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6b35;
-            margin: 2rem 0;
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 107, 53, 0.1);
-            border-radius: 15px;
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -979,6 +1041,21 @@
             .contact-form {
                 padding: 2rem;
                 margin: 0 1rem;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .order-controls {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .order-btn {
+                padding: 1rem;
+                font-size: 1rem;
             }
         }
 
@@ -1078,7 +1155,7 @@
                 <!-- White Chocolate Chip Cookies -->
                 <div class="cookie-variant">
                     <div class="product-image" id="whiteChocolateImage">
-                        <img src="white-chocolate-cookies.jpg" alt="White Chocolate Chip Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                        <img src="white-chocholate-cookies.jpg" alt="White Chocolate Chip Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                     </div>
                     <h3>White Chocolate Chip</h3>
                     <p class="description">Delicate mini cookies featuring creamy white chocolate chips. A sweeter, milder flavor that melts beautifully in your mouth.</p>
@@ -1114,9 +1191,9 @@
                     <p>Traditional family recipe passed down through generations, ensuring authentic taste in every bite</p>
                 </div>
                 <div class="feature">
-                    <span class="feature-icon">📞</span>
-                    <h3>Pickup Only</h3>
-                    <p>Orders must be arranged for pickup - contact us to schedule your convenient pickup time</p>
+                    <span class="feature-icon">📍</span>
+                    <h3>Pickup & Delivery</h3>
+                    <p>Pickup at our home in Tandang Sora St, Koronadal preferred. Delivery within Koronadal available upon location agreement</p>
                 </div>
                 <div class="feature">
                     <span class="feature-icon">💰</span>
@@ -1126,8 +1203,6 @@
             </div>
         </div>
     </section>
-
-
 
     <section class="faq">
         <div class="container">
@@ -1184,9 +1259,12 @@
             
             <div class="contact-info">
                 <h3>Ready to satisfy your cookie cravings?</h3>
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem;">
+                    <strong>📍 Location:</strong> Tandang Sora St, 9506 Koronadal, Philippines, South Cotabato
+                </p>
                 <p style="color: #666; font-size: 1.1rem; margin-bottom: 3rem;">
-                    <strong>Pickup Only</strong> - Payment by cash on pickup<br>
-                    Please specify your order details in the form below
+                    <strong>Pickup & Delivery:</strong> Pickup at our home recommended. Delivery within Koronadal available upon location agreement<br>
+                    <strong>Payment:</strong> Cash on pickup/delivery
                 </p>
             </div>
 
@@ -1194,7 +1272,7 @@
                 <div class="contact-item">
                     <span class="contact-item-icon">📱</span>
                     <h3>Call Us</h3>
-                    <p>+63 123 456 7890</p>
+                    <p>+63 948 888 4973</p>
                     <small>Available daily 9AM - 8PM</small>
                 </div>
                 <div class="contact-item">
@@ -1202,6 +1280,12 @@
                     <h3>Email Us</h3>
                     <p>hazelmagno580@gmail.com</p>
                     <small>We respond within 24 hours</small>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📍</span>
+                    <h3>Our Location</h3>
+                    <p>Tandang Sora St<br>9506 Koronadal, South Cotabato<br>Philippines</p>
+                    <small>Pickup preferred, delivery by arrangement</small>
                 </div>
                 <div class="contact-item">
                     <span class="contact-item-icon">🕒</span>
@@ -1217,6 +1301,16 @@
                 <input type="hidden" name="_subject" value="New Cookie Order from Hazel Cookies Website">
                 <input type="hidden" name="_next" value="https://marval1990.github.io/hazel-cookies-website?success=true">
                 
+                <!-- Order Summary Section -->
+                <div class="order-summary" id="orderSummary">
+                    <h3>📋 Your Current Order</h3>
+                    <div id="orderItems"></div>
+                    <div class="order-controls">
+                        <button type="button" class="order-btn clear-btn" onclick="clearOrder()">Clear Order</button>
+                        <button type="button" class="order-btn add-more-btn" onclick="scrollToProducts()">Add More Items</button>
+                    </div>
+                </div>
+                
                 <div class="form-group">
                     <label for="name">Your Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -1231,15 +1325,16 @@
                 </div>
                 <div class="form-group">
                     <label for="order-details">Your Order Details *</label>
-                    <textarea id="order-details" name="order-details" rows="4" placeholder="Please specify what you want to order:&#10;Example: 6 regular chocolate chip cookies, 12 white chocolate chip cookies" required></textarea>
+                    <textarea id="order-details" name="order-details" rows="4" placeholder="Your order details will appear here automatically when you add items from the cart..." required readonly style="background: #f9f7f4; cursor: not-allowed;"></textarea>
+                    <small style="color: #666; font-size: 0.9rem;">This field is automatically filled when you add items to your order</small>
                 </div>
                 <div class="form-group">
-                    <label for="pickup-time">Preferred Pickup Time *</label>
+                    <label for="pickup-time">Preferred Pickup/Delivery Time *</label>
                     <input type="text" id="pickup-time" name="pickup-time" placeholder="e.g., Tomorrow afternoon, Friday morning, December 30th 2PM" required>
                 </div>
                 <div class="form-group">
                     <label for="special-notes">Additional Notes</label>
-                    <textarea id="special-notes" name="special-notes" rows="3" placeholder="Any special requests, dietary concerns, or questions..."></textarea>
+                    <textarea id="special-notes" name="special-notes" rows="3" placeholder="Any special requests, delivery location preference (if within Koronadal), dietary concerns, or questions..."></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Order Request</button>
             </form>
@@ -1249,9 +1344,10 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Hazel Cookies. Made with ❤️ for cookie lovers everywhere.</p>
-            <p>📱 Contact: +63 123 456 7890 | 📧 hazelmagno580@gmail.com</p>
+            <p>📱 Contact: +63 948 888 4973 | 📧 hazelmagno580@gmail.com</p>
+            <p>📍 Tandang Sora St, 9506 Koronadal, South Cotabato, Philippines</p>
             <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">
-                Fresh baked daily • Pickup only • Cash payment on pickup
+                Fresh baked daily • Pickup at our home preferred • Delivery by arrangement • Cash payment
             </p>
         </div>
     </footer>
@@ -1262,8 +1358,7 @@
             <span class="close-cart" onclick="toggleCart()">&times;</span>
             <h2 style="margin-bottom: 2rem; color: #8B4513; text-align: center;">Your Order</h2>
             <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Total: ₱0</div>
-            <button class="submit-btn" onclick="checkout()">Place Order</button>
+            <button class="submit-btn" onclick="checkout()">Add to Order Details</button>
         </div>
     </div>
 
@@ -1271,6 +1366,7 @@
         let cart = [];
         let cartCount = 0;
         let cartTotal = 0;
+        let currentOrder = []; // Track current order separately from cart
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
@@ -1355,8 +1451,6 @@
                     cartItems.appendChild(itemDiv);
                 });
             }
-            
-            document.getElementById('cartTotal').textContent = `Total: ₱${cartTotal}`;
         }
 
         function changeQuantity(index, change) {
@@ -1398,45 +1492,122 @@
                 return;
             }
             
-            let orderSummary = 'Order Summary:\n\n';
-            cart.forEach(item => {
-                orderSummary += `${item.name} x${item.quantity} - ₱${item.price * item.quantity}\n`;
+            // Add cart items to current order
+            cart.forEach(cartItem => {
+                const existingOrderItem = currentOrder.find(orderItem => orderItem.name === cartItem.name);
+                if (existingOrderItem) {
+                    existingOrderItem.quantity += cartItem.quantity;
+                } else {
+                    currentOrder.push({
+                        name: cartItem.name,
+                        price: cartItem.price,
+                        quantity: cartItem.quantity
+                    });
+                }
             });
-            orderSummary += `\nTotal: ₱${cartTotal}`;
-            orderSummary += '\n\nPlease fill out the contact form below to complete your order!';
             
-            alert(orderSummary);
+            // Update order display
+            updateOrderDisplay();
             
-            // Auto-fill order details in the form
-            const orderDetailsField = document.getElementById('order-details');
-            let autoFillText = '';
-            cart.forEach(item => {
-                autoFillText += `${item.name} x${item.quantity}\n`;
-            });
-            orderDetailsField.value = autoFillText;
+            // Clear cart after adding to order
+            cart = [];
+            cartCount = 0;
+            cartTotal = 0;
+            updateCartDisplay();
+            
+            // Show success message
+            alert('Items added to your order! You can add more items or proceed to complete your order below.');
             
             // Scroll to contact form
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             toggleCart();
+        }
+
+        function updateOrderDisplay() {
+            const orderSummary = document.getElementById('orderSummary');
+            const orderItems = document.getElementById('orderItems');
             
-            // Clear cart after checkout
-            setTimeout(() => {
-                if (confirm('Would you like to clear your cart since the order details have been transferred to the form?')) {
-                    cart = [];
-                    cartCount = 0;
-                    cartTotal = 0;
-                    updateCartDisplay();
-                }
-            }, 2000);
+            if (currentOrder.length === 0) {
+                orderSummary.classList.remove('active');
+                return;
+            }
+            
+            orderSummary.classList.add('active');
+            orderItems.innerHTML = '';
+            
+            let total = 0;
+            currentOrder.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const orderItemDiv = document.createElement('div');
+                orderItemDiv.className = 'order-item';
+                orderItemDiv.innerHTML = `
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>₱${itemTotal}</span>
+                `;
+                orderItems.appendChild(orderItemDiv);
+            });
+            
+            // Add total row
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'order-item';
+            totalDiv.innerHTML = `
+                <span>Total Amount:</span>
+                <span>₱${total}</span>
+            `;
+            orderItems.appendChild(totalDiv);
+            
+            // Update the hidden order details field
+            updateOrderDetailsField();
+        }
+
+        function updateOrderDetailsField() {
+            const orderDetailsField = document.getElementById('order-details');
+            let orderText = '';
+            let total = 0;
+            
+            currentOrder.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                orderText += `${item.name} x${item.quantity} - ₱${itemTotal}\n`;
+            });
+            
+            orderText += `\nTotal Amount: ₱${total}`;
+            orderDetailsField.value = orderText;
+        }
+
+        function clearOrder() {
+            if (currentOrder.length === 0) {
+                alert('No order to clear!');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear your entire order?')) {
+                currentOrder = [];
+                updateOrderDisplay();
+                document.getElementById('order-details').value = '';
+                alert('Order cleared! You can start fresh by adding items to your cart.');
+            }
+        }
+
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
 
         function handleSubmit(event) {
             event.preventDefault();
             
+            // Check if there's an order
+            if (currentOrder.length === 0) {
+                alert('Please add items to your order first by using the shopping cart!');
+                return;
+            }
+            
             // Show loading state
             const submitBtn = event.target.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = 'Sending Order...';
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
             
@@ -1452,22 +1623,32 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    // Success
-                    alert('Thank you! Your order has been sent successfully. We will contact you soon to confirm your pickup time.');
+                    // Success - Clear everything
+                    alert('🎉 Thank you! Your cookie order has been sent successfully. We will contact you soon to confirm your pickup/delivery details.');
+                    
+                    // Reset form
                     event.target.reset();
                     
-                    // Clear cart after successful order
+                    // Clear order and cart completely
+                    currentOrder = [];
                     cart = [];
                     cartCount = 0;
                     cartTotal = 0;
+                    
+                    // Update displays
+                    updateOrderDisplay();
                     updateCartDisplay();
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
                 } else {
                     // Error
-                    alert('Oops! There was a problem submitting your order. Please try again or contact us directly at hazelmagno580@gmail.com');
+                    alert('Oops! There was a problem submitting your order. Please try again or contact us directly at hazelmagno580@gmail.com or +63 948 888 4973');
                 }
             }).catch(error => {
                 // Network error
-                alert('There was a problem sending your order. Please check your internet connection or contact us directly at hazelmagno580@gmail.com');
+                alert('There was a problem sending your order. Please check your internet connection or contact us directly at hazelmagno580@gmail.com or +63 948 888 4973');
             }).finally(() => {
                 // Reset button
                 submitBtn.textContent = originalText;
