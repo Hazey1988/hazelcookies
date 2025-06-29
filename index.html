@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hazel Cookies - Fresh Baked Mini Chocolate Chip Cookies</title>
+    <title>Hazel Cookies - Fresh Baked Mini Cookies & Premium Treats</title>
     <style>
         * {
             margin: 0;
@@ -1018,8 +1018,15 @@
             }
 
             .pricing-options {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 1rem;
+                align-items: center;
+            }
+
+            .price-option {
+                min-width: 200px;
+                width: 100%;
+                max-width: 250px;
             }
 
             .features {
@@ -1109,8 +1116,8 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="container">
-                <h1>Fresh Baked Mini Cookies</h1>
-                <p>Handcrafted chocolate chip cookies made with love, one batch at a time</p>
+                <h1>Fresh Baked Cookie Varieties</h1>
+                <p>Handcrafted cookies made with love, one batch at a time</p>
                 <a href="#products" class="cta-button">Order Now</a>
             </div>
         </div>
@@ -1118,67 +1125,62 @@
 
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Our Chocolate Chip Varieties</h2>
+            <h2 class="section-title">Our Cookie Varieties</h2>
             
             <div class="cookie-variants">
-                <!-- Regular Chocolate Chip Cookies -->
+                <!-- New York Chocolate Chip Cookies -->
                 <div class="cookie-variant">
-                    <div class="product-image" id="regularChocolateImage">
-                        <img src="regular-chocolate-cookies.jpg" alt="Regular Chocolate Chip Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    <div class="product-image" id="newYorkChocolateImage">
+                        <img src="new-york-chocolate-cookies.jpg" alt="New York Chocolate Chip Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                     </div>
-                    <h3>Regular Chocolate Chip</h3>
-                    <p class="description">Classic mini cookies with premium chocolate chips. Perfect balance of soft, chewy texture with bursts of rich chocolate in every bite.</p>
+                    <h3>New York Chocolate Chip</h3>
+                    <p class="description">Premium oversized cookies inspired by New York's finest bakeries. Rich, decadent chocolate chips in every luxurious bite.</p>
                     
                     <div class="pricing-options">
                         <div class="price-option">
-                            <h3>Single Cookie</h3>
-                            <div class="price">₱8</div>
-                            <button class="add-to-cart" onclick="addToCart('Regular Chocolate - Single', 8)">Add to Cart</button>
-                        </div>
-                        
-                        <div class="price-option">
-                            <h3>Pack of 6</h3>
-                            <div class="price">₱45</div>
-                            <span class="savings">Save ₱3!</span>
-                            <button class="add-to-cart" onclick="addToCart('Regular Chocolate - Pack of 6', 45)">Add to Cart</button>
-                        </div>
-                        
-                        <div class="price-option">
-                            <h3>Pack of 12</h3>
-                            <div class="price">₱85</div>
-                            <span class="savings">Save ₱11!</span>
-                            <button class="add-to-cart" onclick="addToCart('Regular Chocolate - Pack of 12', 85)">Add to Cart</button>
+                            <h3>1 Piece</h3>
+                            <div class="price">₱80</div>
+                            <button class="add-to-cart" onclick="addToCart('New York Chocolate Chip - 1 Piece', 80)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- White Chocolate Chip Cookies -->
+                <!-- Mini Chocolate Cookies -->
                 <div class="cookie-variant">
-                    <div class="product-image" id="whiteChocolateImage">
-                        <img src="white-chocholate-cookies.jpg" alt="White Chocolate Chip Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    <div class="product-image" id="miniChocolateImage">
+                        <img src="mini-chocolate-cookies.jpg" alt="Mini Chocolate Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                     </div>
-                    <h3>White Chocolate Chip</h3>
-                    <p class="description">Delicate mini cookies featuring creamy white chocolate chips. A sweeter, milder flavor that melts beautifully in your mouth.</p>
+                    <h3>Mini Chocolate Cookies</h3>
+                    <p class="description">Bite-sized chocolate cookie perfection. Perfect for sharing or enjoying as a sweet treat anytime of the day.</p>
                     
                     <div class="pricing-options">
                         <div class="price-option">
-                            <h3>Single Cookie</h3>
-                            <div class="price">₱8</div>
-                            <button class="add-to-cart" onclick="addToCart('White Chocolate - Single', 8)">Add to Cart</button>
+                            <h3>6 Pieces</h3>
+                            <div class="price">₱30</div>
+                            <button class="add-to-cart" onclick="addToCart('Mini Chocolate Cookies - 6 Pieces', 30)">Add to Cart</button>
                         </div>
                         
                         <div class="price-option">
-                            <h3>Pack of 6</h3>
-                            <div class="price">₱45</div>
-                            <span class="savings">Save ₱3!</span>
-                            <button class="add-to-cart" onclick="addToCart('White Chocolate - Pack of 6', 45)">Add to Cart</button>
+                            <h3>10 Pieces</h3>
+                            <div class="price">₱50</div>
+                            <button class="add-to-cart" onclick="addToCart('Mini Chocolate Cookies - 10 Pieces', 50)">Add to Cart</button>
                         </div>
-                        
+                    </div>
+                </div>
+
+                <!-- Red Velvet Cookies -->
+                <div class="cookie-variant">
+                    <div class="product-image" id="redVelvetImage">
+                        <img src="redvelvet-cookies.jpg" alt="Red Velvet Cookies" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    </div>
+                    <h3>Red Velvet Cookies</h3>
+                    <p class="description">Soft and moist red velvet cookies with a hint of cocoa and vanilla. A unique twist on the classic red velvet flavor.</p>
+                    
+                    <div class="pricing-options">
                         <div class="price-option">
-                            <h3>Pack of 12</h3>
-                            <div class="price">₱85</div>
-                            <span class="savings">Save ₱11!</span>
-                            <button class="add-to-cart" onclick="addToCart('White Chocolate - Pack of 12', 85)">Add to Cart</button>
+                            <h3>12 Pieces</h3>
+                            <div class="price">₱60</div>
+                            <button class="add-to-cart" onclick="addToCart('Red Velvet Cookies - 12 Pieces', 60)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -1246,7 +1248,7 @@
         <div class="container">
             <div class="about-content">
                 <h2>About Hazel Cookies</h2>
-                <p>Welcome to Hazel Cookies, where every bite tells a story of passion and tradition. Our mini chocolate chip cookies are crafted with care using only the finest ingredients and time-tested techniques.</p>
+                <p>Welcome to Hazel Cookies, where every bite tells a story of passion and tradition. Our premium cookie varieties are crafted with care using only the finest ingredients and time-tested techniques.</p>
                 <p>Founded with love for baking and a commitment to quality, each cookie is hand-shaped and baked to perfection, ensuring that golden-brown exterior and soft, chewy center that makes our cookies truly special.</p>
                 <p>We believe that the best cookies come from the heart, and every batch reflects our dedication to bringing joy to families and creating sweet memories, one cookie at a time.</p>
             </div>
