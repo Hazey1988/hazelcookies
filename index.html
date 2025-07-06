@@ -227,6 +227,54 @@
         position: relative;
     }
 
+    /* Order Requirements */
+    .order-requirements {
+        background: linear-gradient(135deg, #f8f5f0, #f0ead6);
+        border: 2px solid #ff6b35;
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-bottom: 4rem;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
+    }
+
+    .order-requirements h3 {
+        text-align: center;
+        font-size: 2rem;
+        color: #8B4513;
+        margin-bottom: 2rem;
+    }
+
+    .requirements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .requirement-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .requirement-item:hover {
+        transform: translateY(-3px);
+    }
+
+    .req-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .requirement-item p {
+        margin: 0;
+        font-weight: 600;
+        color: #2c1810;
+    }
+
     .section-title {
         text-align: center;
         font-size: 3rem;
@@ -1112,6 +1160,24 @@
             padding: 1rem;
             font-size: 1rem;
         }
+
+        /* Order Requirements Mobile */
+        .order-requirements { 
+            padding: 2rem; 
+            margin-bottom: 3rem; 
+        }
+        .order-requirements h3 { 
+            font-size: 1.5rem; 
+        }
+        .requirements-grid { 
+            grid-template-columns: 1fr; 
+            gap: 1rem; 
+        }
+        .requirement-item { 
+            flex-direction: column; 
+            text-align: center; 
+            gap: 0.5rem; 
+        }
     }
 
     @media (max-width: 480px) {
@@ -1197,6 +1263,25 @@
 
 <section id="products" class="products">
     <div class="container">
+        <!-- Order Requirements -->
+        <div class="order-requirements">
+            <h3>Order Requirements</h3>
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <span class="req-icon">💰</span>
+                    <p>At least ₱300 per order</p>
+                </div>
+                <div class="requirement-item">
+                    <span class="req-icon">⏰</span>
+                    <p>Please order at least 48 hours before pick-up</p>
+                </div>
+                <div class="requirement-item">
+                    <span class="req-icon">🍪</span>
+                    <p>We bake only 60 cookies each week—orders close when we hit 60</p>
+                </div>
+            </div>
+        </div>
+        
         <h2 class="section-title">Our Cookie Varieties</h2>
         
         <div class="cookie-variants">
@@ -1441,6 +1526,33 @@
     let cartCount = 0;
     let cartTotal = 0;
     let currentOrder = []; // Track current order separately from cart
+    
+    // Order validation constants
+    const MIN_ORDER_AMOUNT = 300;
+
+    // Function to calculate total amount of an order
+    function calculateTotalAmount(order) {
+        let total = 0;
+        order.forEach(item => {
+            total += item.price * item.quantity;
+        });
+        return total;
+    }
+
+    // Check if order meets minimum amount requirement
+    function validateOrder(order) {
+        const totalAmount = calculateTotalAmount(order);
+        
+        // Check minimum amount
+        if (totalAmount < MIN_ORDER_AMOUNT) {
+            return {
+                valid: false,
+                message: `Minimum order amount is ₱${MIN_ORDER_AMOUNT}. Your current order total is ₱${totalAmount}. Please add ₱${MIN_ORDER_AMOUNT - totalAmount} more to meet the minimum.`
+            };
+        }
+        
+        return { valid: true };
+    }
 
     // Header scroll effect
     window.addEventListener('scroll', function() {
@@ -1524,6 +1636,66 @@
                 `;
                 cartItems.appendChild(itemDiv);
             });
+
+            // Add cart total and minimum order status
+            const cartTotal = calculateTotalAmount(cart);
+            const totalDiv = document.createElement('div');
+            totalDiv.style.cssText = `
+                border-top: 2px solid #ff6b35;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                text-align: center;
+            `;
+
+            if (cartTotal >= MIN_ORDER_AMOUNT) {
+                totalDiv.innerHTML = `
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #8B4513; margin-bottom: 0.5rem;">
+                        Cart Total: ₱${cartTotal}
+                    </div>
+                    <div style="color: #28a745; font-weight: bold; font-size: 0.9rem;">
+                        ✅ Minimum order requirement met!
+                    </div>
+                `;
+            } else {
+                const needed = MIN_ORDER_AMOUNT - cartTotal;
+                totalDiv.innerHTML = `
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #8B4513; margin-bottom: 0.5rem;">
+                        Cart Total: ₱${cartTotal}
+                    </div>
+                    <div style="color: #dc3545; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        ⚠️ Add ₱${needed} more to meet minimum order
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">
+                        Minimum order: ₱${MIN_ORDER_AMOUNT}
+                    </div>
+                `;
+            }
+            cartItems.appendChild(totalDiv);
+        }
+
+        // Update the "Add to Order Details" button
+        updateCheckoutButton();
+    }
+
+    function updateCheckoutButton() {
+        const checkoutButton = document.querySelector('#cartModal .submit-btn');
+        const cartTotal = calculateTotalAmount(cart);
+        
+        if (cart.length === 0) {
+            checkoutButton.disabled = true;
+            checkoutButton.textContent = 'Cart is Empty';
+            checkoutButton.style.opacity = '0.5';
+            checkoutButton.style.cursor = 'not-allowed';
+        } else if (cartTotal < MIN_ORDER_AMOUNT) {
+            checkoutButton.disabled = true;
+            checkoutButton.textContent = `Add ₱${MIN_ORDER_AMOUNT - cartTotal} More`;
+            checkoutButton.style.opacity = '0.5';
+            checkoutButton.style.cursor = 'not-allowed';
+        } else {
+            checkoutButton.disabled = false;
+            checkoutButton.textContent = 'Add to Order Details';
+            checkoutButton.style.opacity = '1';
+            checkoutButton.style.cursor = 'pointer';
         }
     }
 
@@ -1540,6 +1712,7 @@
         cartCount += change;
         cartTotal += (item.price * change);
         updateCartDisplay();
+        updateCheckoutButton();
     }
 
     function removeFromCart(index) {
@@ -1548,6 +1721,7 @@
         cartTotal -= (item.price * item.quantity);
         cart.splice(index, 1);
         updateCartDisplay();
+        updateCheckoutButton();
     }
 
     function toggleCart() {
@@ -1557,12 +1731,20 @@
         } else {
             modal.style.display = 'block';
             updateCartDisplay();
+            updateCheckoutButton();
         }
     }
 
     function checkout() {
         if (cart.length === 0) {
             alert('Your cart is empty! Please add some cookies first.');
+            return;
+        }
+        
+        // Check minimum amount before proceeding
+        const totalAmount = calculateTotalAmount(cart);
+        if (totalAmount < MIN_ORDER_AMOUNT) {
+            alert(`Minimum order amount is ₱${MIN_ORDER_AMOUNT}. Your current cart total is ₱${totalAmount}. Please add ₱${MIN_ORDER_AMOUNT - totalAmount} more to meet the minimum.`);
             return;
         }
         
@@ -1583,14 +1765,17 @@
         // Update order display
         updateOrderDisplay();
         
+        // Store the total amount for the success message
+        const addedAmount = totalAmount;
+        
         // Clear cart after adding to order
         cart = [];
         cartCount = 0;
         cartTotal = 0;
         updateCartDisplay();
         
-        // Show success message
-        alert('Items added to your order! You can add more items or proceed to complete your order below.');
+        // Show success message with details
+        alert(`✅ Success! Items added to your order details!\n\nAdded: ₱${addedAmount}\nYou can continue adding more items or proceed to complete your order.`);
         
         // Scroll to contact form
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
@@ -1675,6 +1860,13 @@
         // Check if there's an order
         if (currentOrder.length === 0) {
             alert('Please add items to your order first by using the shopping cart!');
+            return;
+        }
+        
+        // Final validation before submitting
+        const validation = validateOrder(currentOrder);
+        if (!validation.valid) {
+            alert(validation.message);
             return;
         }
         
